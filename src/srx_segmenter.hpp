@@ -2,6 +2,7 @@
 
 #include <boost/filesystem.hpp>
 #include <boost/scoped_ptr.hpp>
+#include <boost/algorithm/string/trim.hpp>
 
 #include "regexp.hpp"
 #include "srx_rules.hpp"
@@ -68,12 +69,28 @@ public:
 
 class SrxSentenceCutter : public Cutter {
 public:
-    SrxSentenceCutter(SrxSegmenter& segmenter)
-        :segmenter_(segmenter),
+    SrxSentenceCutter(SrxSegmenter& segmenter, const std::string& line, bool trim)
+        :segmenter_(segmenter), line_(line), trim_(trim), pos_(0), good_(true),
          breakingRuleApplications_(segmenter.breakingRules_.size()),
          nonBreakingRuleApplications_(segmenter.nonBreakingRules_.size()) {
     }
 
+    SrxSentenceCutter& operator>>(std::string& frag) {
+        if(pos_ == std::string::npos) {
+            good_ = false;
+            return *this;
+        }
+        AnnotationItem a = cutOff(line_, pos_);
+        frag = a.getText();
+        if(trim_)
+            boost::trim(frag);
+        return *this;
+    }
+    
+    operator bool() {
+        return good_;
+    }
+    
 private:
     const static std::string DEFAULT_SENTENCE_CATEGORY;
 
@@ -224,6 +241,10 @@ private:
     }
 
     SrxSegmenter& segmenter_;
+    std::string line_;
+    bool trim_;
+    size_t pos_;
+    bool good_;
 
     struct RuleApplication {
         size_t startingPosition;

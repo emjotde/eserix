@@ -7,7 +7,7 @@ SET(CMAKE_CXX_FLAGS " -std=c++11 -g -O3 -funroll-loops -Wno-unused-result -Wno-d
 include_directories(${eserix_SOURCE_DIR})
 set(EXT_LIBS)
 
-find_package(Boost COMPONENTS system filesystem)
+find_package(Boost COMPONENTS system filesystem program_options)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     set(EXT_LIBS ${EXT_LIBS} ${Boost_LIBRARIES})
