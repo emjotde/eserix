@@ -6,9 +6,9 @@ SRX-based sentence segmenter writtin in C++. The source files have been extracte
 
 To compile:
 
-  mkdir build
-  cd build
-  cmake ..
-  make
+    mkdir build
+    cd build
+    cmake ..
+    make
 
 
