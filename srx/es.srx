@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!-- <!DOCTYPE srx PUBLIC "-//SRX//DTD SRX//EN" "srx.dtd"> -->
+<!-- Copyright (C) 2007-2011 Poleng Sp. z o.o.
+
+     This file is part of Translatica segmentation rules.
+
+     Translatica segmentation rules can be redistributed and/or modified
+     under the terms of the GNU Lesser General Public Licence as
+     published by the Free Software Foundation. -->
+<srx version="1.0">
+
+	<header segmentsubflows="yes">
+		<formathandle type="start" include="no"/>
+		<formathandle type="end" include="yes"/>
+		<formathandle type="isolated" include="yes"/>
+	</header>
+
+	<body>
+		<languagerules>
+
+			<languagerule languagerulename="es">
+
+				<!-- Wypunktowanie -->
+				<rule break="no">
+					<beforebreak>^\s*[0-9]+\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<rule break="no">
+					<beforebreak>^\s*\p{Ll}\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<!-- Inicjały -->
+				<rule break="no">
+					<beforebreak>\b\p{Lu}\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+                			<!-- ABBREVS -->
+               	 	<rule break="no">
+                        <beforebreak>\b(?:P\.D|A\.C|A\. de C|a\. de J\.C|adj|afmo|apdo|Av|c|cap|C|c\.f|cg|cm|d\. de J\.C|doc|Dr|Drs|E|EE\.UU|esq|etc|f|f\.c|gr|grs|Gral|kg|l|Lic|Lic\. en Fil\. y Let|m|mg|mm|n|N|N\.B|núm|pág|págs|p\. ej|Prof|Profa|ptas|q\.e\.g\.e|q\.e\.s\.m|q\.e\.p\.d|S|S\.A|S\.L|Sr|Sra|Srta|S\.R\.C|s\.s\.s|t|Tel|T\.V\.E|Ud|Uds|v|Vd|Vds|vid|D|Da|FF\. AA|S\. A|hnos|a\.m|p\.m|aprox|Avda|c\.c|Bs\. As|dna|f\.c|F\.C|Gob|h|Ing|no|m\.n|tel|vol|W\.C|AA\. EE|SS\. HH|DD\. HH|fr|á|AA|ab|abr|a\.c|acr|admor|af|ago|alc|alt|apóst|art|arz|atto|Aud|a/v\.|B|bca|Br|bto|C\.A|C\.C|C\.D|cje|cl|cllo|Cnel|Co|comis|comp|cons|Const|const|conv|corr|cs|c\.s\.f|cta|cte|cuad|C\.V|dcha|DD|der|descto|dha|dic|dl|Dl|dis|docum|dom|dpto|ej|Em|escs|escrnía|escrno|Evang|Exc|fcos|feb|fha|fol|Fr|fra|fund|fut|G|gue|g\.p|gte|hect|Hg|Hl|Hm|Hno|íd|ib|ít|Jhs|juev|jul|jun|lb|lín|Ltda|lun|mar|mart|mcos|miérc|monast|Mons|Mr|mrd|Mro|nov|nra|nro|nto|ob|oct|ONO|onz|ord|Pcia|P\.D|penit|perg|pmo|P\.O|pral|pralte|priv|Rep|r\.p\.m|rte|rúst|sáb|Sores|spre|Sría|sup|tpo)\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+                </rule>
+
+				<rule break="yes">
+					<beforebreak>[\.\?!]+</beforebreak>
+					<afterbreak>\s+([\-–]\s*)?\p{Lu}</afterbreak>
+				</rule>
+
+                                <!-- przypisy -->
+                                <rule break="yes">
+					<beforebreak>\.(?:\[[0-9]+\])+</beforebreak>
+					<afterbreak> </afterbreak>
+				</rule>
+
+
+				<rule break="yes">
+					<beforebreak></beforebreak>
+					<afterbreak>\n</afterbreak>
+				</rule>
+
+			</languagerule>
+
+
+
+		</languagerules>
+
+		<maprules>
+			<maprule maprulename="Default">
+				<languagemap languagepattern="(?:ES|es|Spanish|SPANISH).*" languagerulename="es"/>
+			</maprule>
+		</maprules>
+
+	</body>
+
+</srx>
+
+

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!-- <!DOCTYPE srx PUBLIC "-//SRX//DTD SRX//EN" "srx.dtd"> -->
+<!-- Copyright (C) 2007-2011 Poleng Sp. z o.o.
+
+     This file is part of Translatica segmentation rules.
+
+     Translatica segmentation rules can be redistributed and/or modified
+     under the terms of the GNU Lesser General Public Licence as
+     published by the Free Software Foundation. -->
+<srx version="1.0">
+
+	<header segmentsubflows="yes">
+		<formathandle type="start" include="no"/>
+		<formathandle type="end" include="yes"/>
+		<formathandle type="isolated" include="yes"/>
+	</header>
+
+	<body>
+		<languagerules>
+
+
+
+			<languagerule languagerulename="de">
+
+				<!-- Wypunktowanie -->
+				<rule break="no">
+					<beforebreak>^\s*[0-9]+\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<rule break="no">
+					<beforebreak>^\s*\p{Ll}\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<!-- Inicjały -->
+				<rule break="no">
+					<beforebreak>\b\p{Lu}\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<rule break="no">
+					<beforebreak>\b(?:Abb|Abf|[aA]bg|Abh|[aA]bk|Abs|Abw|Adir|[aA]dj|Adr|[aA]dv|Afr|Ag|agg|Aggr|Ahg|Anh|aisl|[aA]kad|Akk|Alg|allg|alph|altgr|Am|Amp|amtl|Amtsbl|An|anat|anerk|Anf|Anfr|Ang|angekl|Angel|Angest|angew|Ank|[aA]nl|Anm|[aA]nn|anon|Anord|Anp|ANr|Ans|Ansch|anschl|Anschr|Anspr|Antiq|Antr|Antw|Anz|Apart|apl|App|[aA]pr|Aq|Arbf|Arbg|Arbn|Arch|arr|Art|Asp|Ass|Assist|ASt|Astrol|astron|asym|asymp|At|Atl|Atm|Attr|Aufb|Aufbew|Aufg|Aufkl|Aufl|Ausg|ausschl|Az|Änd|Äq|ärztl|ästh|äth)\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<rule break="no">
+					<beforebreak>\b(?:Ba|Bd|beil|bes|Betr|[bB]ez|Bhf|Bil|Bl|brosch|Bsp|bspw|bzgl|bzw|ca|DDr|desgl|dgl|Dr|Dres|dt|dtsch|dto|Dtz|Dtzd|ebd|Ed|ehem|eig|eigtl|einschl|entspr|erg|et\sal|etc|ev|evtl|exkl|Expl|Exz|Fa|ff|Forts|Fr|frdl|Frhr|Frl|frz|Gbf|geb|Gebr|gegr|geh|gek|Ges|gesch|Geschw|gest|Gew|gez|ggf|Hbf|hg|hl|Hr|Hrn|Hrsg|Hs|id|Ing|Inh|inkl|Jb|Jg|Jh|jr|jun|Kap|kart|kath|[kK]fm|kgl|Kl|Komp|Kr|Kto|led|lfd|Lfg|Lfrg|lt|Ltn|luth|math|Mill|möbl|Ms|Mskr|mtl|MwSt|Mz|Nachf|Nchf|nachm|Nds|Nr|No)\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<rule break="no">
+					<beforebreak>\b(?:Obb|op|Pfd|Pkt|pp|ppa|Pfr|Prof|Prov|ps|rk|rd|Rel|resp|Rhld|Sa|sen|Spk|sog|spec|St|Skt|St|Std|Str|stud|Tel|Tsd|urspr|usf|usw|[vV]|Verf|Vf|verh|Verl|[vV]ers|verw|vgl|vorm|Vors|wtf|Wwe|Wz|zz|zzt|Ztg|Ztr|Ztschr|zus|zw|zzgl)\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<rule break="no">
+					<beforebreak>\b(?:z)\.</beforebreak>
+					<afterbreak>\s*B</afterbreak>
+				</rule>
+
+				<!-- multidot 1 -->
+				<rule break="no">
+					<beforebreak>\b(?:a\.\s?(?:A|B|D|G|M|N|Rh|S)|A\.\s?(?:D|T)|a\.\s?a\.\s??(?:O|S)|a\.\s?d\.\s?(?:B|D|E|L|O|R|S|W)|A\.\s?d\.\s?(?:Ü|Hrsg|W)|a\.\s?(?:gl\.\s?O|n\.\s?g)|d\.\s?(?:Ä|Gr|h|i|J|M|O|R|U|Vf)|(?:Dr\.\s?(?:jur|med(?:\.\s?(?:dent|vet)?)|phil|rer\.\s?(?:nat|pol)|theol))|Dr\.-Ing|Dipl\.(?:-Ing|-Jur))\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<!-- multidot 2 -->
+				<rule break="no">
+					<beforebreak>\b(?:v\.\s?g\.\s?u|v\.\s?(?:a|Chr|H|J|M|T)|z\.\s?d\.\s?A|z\.\s?(?:B|H|Hd|S|T|Z|Zt)|i\.\s?(?:A|J|R|S|V|W)|i\.\s?(?:d\.\s?R|w\.\s?S|Z\.\s?m)|lfd\.\s?(?:m|Nr)|s\.\s?(?:a|d|o|u|Z|v\.\s?w)|u\.s(?:A\.\s?w\.\s?g|a(?:\sm)?|ä|d\.\s?M|u. dgl(?:\.\sm)|E|U|W|ü\.\s?V|v\.\s?(?:a|m)))\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<!-- multidot 3 -->
+				<rule break="no">
+					<beforebreak>\b(?:n\.\s?(?:Chr|J|M)|N\.\s?N|o\.\s?(?:ä|B|B\.\s?d\.\s?A|J|P)|m\.\s?(?:A\.\s?n|a\.\s?W|E|W)|[mM]\.\s?d\.\s?B|M\.\s?(?:d\.\s?L|I\.\s?L\.\s?F)|Ansch\.-K|Anw\.-L|b\.\s?w|Best\.-Nr|B\.O\.G\.O\.F|e\.\s?h|e\.\s?V|et\sal|etc\.\s?pp|F\.\s?C|f\.\s?d\.\s?R|ges\.\s?gesch|i\.e|i\.H\.v|p\.\s?A|q\.\s?e\.\s?d|r\.-k|Reg\.-Bez|ü\.\s?d\.\s?M|Univ\.-Prof|w\.\s?o)\.</beforebreak>
+					<afterbreak>\s</afterbreak>
+				</rule>
+
+				<rule break="yes">
+					<beforebreak>[\.\?!]+</beforebreak>
+					<afterbreak>\s+\p{Lu}</afterbreak>
+				</rule>
+
+				<rule break="yes">
+					<beforebreak></beforebreak>
+					<afterbreak>\n</afterbreak>
+				</rule>
+                                    <!-- przypisy -->
+                                <rule break="yes">
+					<beforebreak>\.(?:\[[0-9]+\])+</beforebreak>
+					<afterbreak> </afterbreak>
+				</rule>
+			</languagerule>
+
+
+
+		</languagerules>
+
+		<maprules>
+			<maprule maprulename="Default">
+				<languagemap languagepattern="(?:DE|de|German|GERMAN).*" languagerulename="de"/>
+			</maprule>
+		</maprules>
+
+	</body>
+
+</srx>
+
+
