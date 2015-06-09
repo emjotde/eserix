@@ -12,7 +12,6 @@ int main(int argc, char** argv) {
 
     std::string language, rules;
     std::size_t soft_limit, hard_limit;
-    bool consume;
     
     options.add_options()
       ("help,h", po::bool_switch(), "Show this help message")
@@ -37,7 +36,7 @@ int main(int argc, char** argv) {
     }
     po::notify(vm);
     
-    SrxSegmenter srxSeg(language, rules, soft_limit, hard_limit);
+    SrxSegmenter srxSeg(language, rules, hard_limit, soft_limit);
     
     std::string line;
     while(std::getline(std::cin, line)) {
