@@ -2,7 +2,6 @@
 
 #include <boost/filesystem.hpp>
 #include <boost/scoped_ptr.hpp>
-#include <boost/algorithm/string/trim.hpp>
 
 #include "regexp.hpp"
 #include "srx_rules.hpp"
@@ -67,7 +66,9 @@ public:
 
 };
 
-class SrxSentenceCutter : public Cutter {
+void trim(std::string&);
+
+class SrxSentenceCutter : private Cutter {
 public:
     SrxSentenceCutter(SrxSegmenter& segmenter, const std::string& line, bool trim)
         :segmenter_(segmenter), line_(line), trim_(trim), pos_(0), good_(true),
@@ -83,7 +84,7 @@ public:
         AnnotationItem a = cutOff(line_, pos_);
         frag = a.getText();
         if(trim_)
-            boost::trim(frag);
+            trim(frag);
         return *this;
     }
     

@@ -1,12 +1,24 @@
 #include "srx_segmenter.hpp"
 
 #include <cassert>
+#include <cctype>
 #include <boost/function_output_iterator.hpp>
 
 #include "srx_rules.hpp"
 
 #include "escaping.hpp"
 
+void trim(std::string& toTrim) {
+    size_t pos1 = 0;
+    size_t pos2 = toTrim.length();
+    
+    while(std::isspace(toTrim[pos1]))
+        pos1++;
+    while(std::isspace(toTrim[pos2 - 1]))
+        pos2--;
+    
+    toTrim = toTrim.substr(pos1, pos2 - pos1);
+}
 
 void SrxSegmenter::processRule_(const SrxRule& srxRule) {
     boost::shared_ptr<PerlRegExp> ruleRegexp(

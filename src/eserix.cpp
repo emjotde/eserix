@@ -8,7 +8,7 @@
 int main(int argc, char** argv) {
     
     namespace po = boost::program_options;
-    po::options_description options("C++ SRX sentence segmenter");
+    po::options_description options("SRX sentence segmenter");
 
     std::string language, rules;
     std::size_t soft_limit, hard_limit;
@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
       ("help,h", po::bool_switch(), "Show this help message")
       ("language,l", po::value<std::string>(&language)->default_value("en"),
        "Language in SRX file")
-      ("rules,r", po::value<std::string>(&rules)->default_value("srx/en.srx"),
+      ("rules,r", po::value<std::string>(&rules)->default_value("srx/rules.srx"),
        "Path to SRX file")
       ("soft_limit", po::value<std::size_t>(&soft_limit)->default_value(0),
        "Break at next space after  args  bytes, disabled by default")
@@ -25,6 +25,8 @@ int main(int argc, char** argv) {
        "Break after  args  bytes, disabled by default")
       ("trim,t", po::bool_switch(),
        "Trim leading and trailing white spaces")
+      ("consume,c", po::bool_switch(),
+       "Consune whole text first then split, line-by-line otherwise")
     ;
     
     po::variables_map vm;
@@ -38,13 +40,26 @@ int main(int argc, char** argv) {
     
     SrxSegmenter srxSeg(language, rules, hard_limit, soft_limit);
     
-    std::string line;
-    while(std::getline(std::cin, line)) {
-        SrxSentenceCutter srxCutter(srxSeg, line, vm["trim"].as<bool>());
+    if(vm["consume"].as<bool>()) {
+        std::stringstream ss;
+        bool doTrim = vm["trim"].as<bool>();
+        char c;
+        while(std::cin.get(c))
+            ss << c;
+        SrxSentenceCutter srxCutter(srxSeg, ss.str(), doTrim);
         std::string frag;
         while(srxCutter >> frag)
-            std::cout << frag << std::endl;
+            if(!doTrim || !frag.empty())
+                std::cout << frag << std::endl;
     }
-
+    else {
+        std::string line;
+        while(std::getline(std::cin, line)) {
+            SrxSentenceCutter srxCutter(srxSeg, line, vm["trim"].as<bool>());
+            std::string frag;
+            while(srxCutter >> frag)
+                std::cout << frag << std::endl;
+        }
+    }
     return 0;
 }
