@@ -12,4 +12,5 @@ public:
     XmlPropertyTree(std::istream& inputStream);
     XmlPropertyTree(const boost::filesystem::path& xmlFilePath);
 
+    void write(std::ostream& outputStream);
 };

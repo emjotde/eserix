@@ -87,7 +87,7 @@ bool SrxRulesReader::processLanguageMap_(boost::property_tree::ptree& langmap) {
     if (PerlRegExp::FullMatch(lang_, languagePattern)) {
         languageRuleNames_.insert(languageRuleName);
 
-        DEBUG("SRX: " << languageRuleName << " for language: " << lang_);
+        //DEBUG("SRX: " << languageRuleName << " for language: " << lang_);
 
         if (!cascade_)
             return true;

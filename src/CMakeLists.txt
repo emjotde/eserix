@@ -15,10 +15,17 @@ add_library(srx OBJECT
 )
 
 add_executable(eserix eserix.cpp $<TARGET_OBJECTS:srx>)
+add_executable(eserix_tei eserix_tei.cpp $<TARGET_OBJECTS:srx>)
 
 target_link_libraries(eserix ${EXT_LIBS})
+target_link_libraries(eserix_tei ${EXT_LIBS})
 
 set_target_properties(eserix 
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)
+
+set_target_properties(eserix_tei
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
