@@ -38,13 +38,18 @@
 
                 <!-- Roman -->
                 <rule break="no">
-                    <beforebreak>\b(I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVII|XVIII|XIX|XX|XXI|XXII|XXIII|XXIV|XXV)\.</beforebreak>
+                    <beforebreak>\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVII|XVIII|XIX|XX|XXI|XXII|XXIII|XXIV|XXV)\)*\.</beforebreak>
                     <afterbreak>\s</afterbreak>
                 </rule>
 
                 <!-- ABBREVS -->
                 <rule break="no">
                     <beforebreak>\b(?:[aA]bbr|A\.D|[cC]haps|[cC]hap|[sS]ect|[aA]\.k\.a|[aA]\.m|[aA]non|[aA]pprox|[aA]ssn|Aug|[aA]\.v|[aA]ve|B\.A|Bart|B\.C|[bB]icarb|[bB]ldg|[bB]lvd|B\.O|[bB]oul|Bros|B\.S|Bt|[cC]|[cC]a|Capt|C\.E\.O|C\.I\.O|Co|Col|[cC]ont|Corp|Cpl|Ct|[cC]\.w\.o|[dD]eg|[dD]ept|Dr|D\.S\.O|[eE]d|[eE]\.g|[eE]ncl|Esq|[eE]xcl|[fF]\.b|Feb|[gG]al|G\.D\.P|Gen|G\.N\.P|Gov|[hH]wy|[iI]\.a|[iI]b|[iI]bid|[iI]\.e|[iI]nc|[iI]ncl|[iI]nt|Jan|Jr|[lL]at|Lat|Lk|Lt|Ltd|M\.D|[mM]ed|[mM]o|Mr|Messrs|Mrs|Ms|[nN]\.c\.o|[nN]o|Nov|Oct|[oO]\.t\.c|[oO]z|[pP]|[pP]\.a|[pP]d|Ph\.D|[pP]\.m|Prof|P\.S|Rd|[rR]ef|[rR]eg|Sept|Sgt|Sig|St|[uU]lt|U\.S|[vV]|[vV]iz|[vV]s|[yY]r)\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+                
+                <rule break="no">
+                    <beforebreak>\b(?:DOC|ADDR|Sr|Ass|Mme|Mlle|Md|Sra|et al|a\.i|\(Vol)\.</beforebreak>
                     <afterbreak>\s</afterbreak>
                 </rule>
 
@@ -87,13 +92,13 @@
 
                 <!-- Roman -->
                 <rule break="no">
-                    <beforebreak>\b(I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVII|XVIII|XIX|XX|XXI|XXII|XXIII|XXIV|XXV)\.</beforebreak>
+                    <beforebreak>\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVII|XVIII|XIX|XX|XXI|XXII|XXIII|XXIV|XXV)\)*\.</beforebreak>
                     <afterbreak>\s</afterbreak>
                 </rule>
 
                 <!-- ABBREVS -->
                 <rule break="no">
-                    <beforebreak>\b(?:A\.O|C\.B|C\.-B|I\.-P\.-E|I\.P\.E|M|Me|Mlle|Mlles|N\.-B|N\.-É|Ste|T\.-N|av\. J\.-C|apr\. J\.-C|V\.O\.S\.T\.F|VOSTF|v\.o\.s\.t\.f|vostf|VOSTFR|vostfr|w\.-c|c\.-à-d|cf|p\.ex|p\. ex|éd|s\.o|J\.-C|div|mar|ex|dép|hab|p|c\.o\.d|av|B\.P|boul|cap|ch.\-l|circonscr|E\.V|faub|fl|pl|riv|MM|S\.M|S\.A|S\.Em|S\.E|S\.Exc|Acad|adm|Admin|anc|ann|Antiq|append|apr|arch|archéol|arithm|art|astron|bdc|biblio|bibliogr|biol|bot|br|bull|caract|cart|Cass|ch|chap|chronol|circ|C\. civ|C\. pén|col|coll|cf|dict|doc|dr|ecclés|encycl|env|etc|ép|épil|éts|étym|f|ff|fasc|fém|fig|généal|géogr|géol|géom|graph|grav|gr\. cap|haut|hist|iconogr|ill|illustr|impr|inf|introd|invar|ital|jur|l|larg|lat|libr|liv|loc|long|L|masc|math|max|ms|mss|mus|myth|N\.-D|N\.D\.A|N\.D\.E|N\.D\.L\.R|N\.D\.T|nouv|numism|obs|p|p\. cap|P\.C\.C|paragr|part|pharm|phys|plur|P\.J|préf|P\.-S|rel|R\.S\.V\.P|sc|s\.d|s\.l|s\.l\.n\.d|sect|sing|subst|suiv|suppl|S\.V\.P|t|tél|T\.S\.V\.P|T\.T\.C|v|var|vol|zool|vs|sq|sqq|loc\. cit|loc\. laud|i\.e|id|ibid)\.</beforebreak>
+                    <beforebreak>\b(?:Mr|A\.O|C\.B|C\.-B|I\.-P\.-E|I\.P\.E|M|Me|Mlle|Mlles|N\.-B|N\.-É|Ste|T\.-N|av\. J\.-C|apr\. J\.-C|V\.O\.S\.T\.F|VOSTF|v\.o\.s\.t\.f|vostf|VOSTFR|vostfr|w\.-c|c\.-à-d|cf|p\.ex|p\. ex|éd|s\.o|J\.-C|div|mar|ex|dép|hab|p|c\.o\.d|av|B\.P|boul|cap|ch.\-l|circonscr|E\.V|faub|fl|pl|riv|MM|S\.M|S\.A|S\.Em|S\.E|S\.Exc|Acad|adm|Admin|anc|ann|Antiq|append|apr|arch|archéol|arithm|art|astron|bdc|biblio|bibliogr|biol|bot|br|bull|caract|cart|Cass|ch|chap|chronol|circ|C\. civ|C\. pén|col|coll|cf|dict|doc|dr|ecclés|encycl|env|etc|ép|épil|éts|étym|f|ff|fasc|fém|fig|généal|géogr|géol|géom|graph|grav|gr\. cap|haut|hist|iconogr|ill|illustr|impr|inf|introd|invar|ital|jur|l|larg|lat|libr|liv|loc|long|L|masc|math|max|ms|mss|mus|myth|N\.-D|N\.D\.A|N\.D\.E|N\.D\.L\.R|N\.D\.T|nouv|numism|obs|p|p\. cap|P\.C\.C|paragr|part|pharm|phys|plur|P\.J|préf|P\.-S|rel|R\.S\.V\.P|sc|s\.d|s\.l|s\.l\.n\.d|sect|sing|subst|suiv|suppl|S\.V\.P|t|tél|T\.S\.V\.P|T\.T\.C|v|var|vol|zool|vs|sq|sqq|loc\. cit|loc\. laud|i\.e|id|ibid)\.</beforebreak>
                     <afterbreak>\s</afterbreak>
                 </rule>
 
@@ -132,6 +137,17 @@
                 <rule break="no">
                     <beforebreak>^\s*(?:\p{Lu}\.)+</beforebreak>
                     <afterbreak>\s\p{Ll}</afterbreak>
+                </rule>
+
+                <!-- Roman -->
+                <rule break="no">
+                    <beforebreak>\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVII|XVIII|XIX|XX|XXI|XXII|XXIII|XXIV|XXV)\)*\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+
+                <rule break="no">
+                    <beforebreak>\b(?:м|стр|Ар|долл|им|\(Vol)\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
                 </rule>
 
                 <rule break="no">
@@ -211,6 +227,17 @@
                 <!-- Inicjały -->
                 <rule break="no">
                     <beforebreak>\b\p{Lu}\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+
+                <!-- Roman -->
+                <rule break="no">
+                    <beforebreak>\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVII|XVIII|XIX|XX|XXI|XXII|XXIII|XXIV|XXV)\)*\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+
+                <rule break="no">
+                    <beforebreak>\b(?:EE|EE\.UU|[sS]ecc|[Ee]xcmo|\(Vol)\.</beforebreak>
                     <afterbreak>\s</afterbreak>
                 </rule>
 

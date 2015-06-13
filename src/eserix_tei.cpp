@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <map>
 #include <boost/program_options.hpp>
 
 #include "srx_segmenter.hpp"
@@ -37,6 +38,8 @@ int main(int argc, char** argv) {
     po::notify(vm);
     bool doTrim = vm["trim"].as<bool>();
     
+    std::map<std::string, std::shared_ptr<SrxSegmenter>> langSrx;
+    
     XmlPropertyTree xml(std::cin);
     typedef XmlPropertyTree::path_type path;
     for(auto& v : xml.get_child(path("TEI.2/text/body", '/'))) {
@@ -49,15 +52,17 @@ int main(int argc, char** argv) {
             v.second.erase("<xmlattr>");
             v.second.add("<xmlattr>.id", id);
             
-            SrxSegmenter srxSeg(lang, rules, hard_limit, soft_limit);
-            SrxSentenceCutter srxCutter(srxSeg, text, doTrim);
+            if(langSrx.count(lang) == 0)
+                langSrx[lang] = std::shared_ptr<SrxSegmenter>(
+                    new SrxSegmenter(lang, rules, hard_limit, soft_limit));
+            
+            SrxSentenceCutter srxCutter(*langSrx[lang], text, doTrim);
             std::string frag;
             size_t subid = 1;
             while(srxCutter >> frag) {    
                 auto& s = v.second.add("s", frag);
                 s.add("<xmlattr>.id", id + ":" + boost::lexical_cast<std::string>(subid++));
                 s.add("<xmlattr>.lang", lang);
-                //v.second.add("<xmltext>", "\n");
             }
         }
     }
