@@ -459,6 +459,57 @@
                 </rule>
 
             </languagerule>
+            
+            <languagerule languagerulename="hr">
+
+                <!-- Wypunktowanie -->
+                <rule break="no">
+                    <beforebreak>^\s*[0-9]+\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+
+                <rule break="no">
+                    <beforebreak>^\s*\p{Ll}\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+
+                <!-- Inicjały -->
+                <rule break="no">
+                    <beforebreak>\b\p{Lu}\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+
+                <!-- Roman -->
+                <rule break="no">
+                    <beforebreak>\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVII|XVIII|XIX|XX|XXI|XXII|XXIII|XXIV|XXV)\)*\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+
+                <!-- ABBREVS -->
+                <rule break="no">
+                    <beforebreak>\b(?:br|uč|str|tzv|i\s+sl|tj|ž\.\s*r|v\.\s*d|o\.\s*g|npr|jd|br|č|g|l|o|r|bl|fr|mn|pl|st|sv|ak|čak|čit|dat|dem|dipl|gen|imp|god|gosp|hrv|instr|komp|kajk|kat|lok|mons|nom|os|pov|prof|razr|slov|tok|tal|usp|dr|mr|rn|akad|msgr|plf|rkt|rkp|stsl|vlč|d\.\s*d|d\.\s*o\.\s*o|j\.\s*t\.\s*d|n\.\s*r|p\.\s*n|v\.\s*r|a\.\s*a|p\.\s*c|s\.\s*a|d\.\s*z|i\s+dr|u\s+z|po\.\s+Kr|pr\.\s+Kr|zk\.\s+ul|kbr|itd|itsl)\.</beforebreak>
+                    <afterbreak>\s</afterbreak>
+                </rule>
+                
+                <rule break="yes">
+                    <beforebreak>[\.\?!]+(["'])?</beforebreak>
+                    <afterbreak>\s+([\-"']+\s*)?\p{Lu}</afterbreak>
+                </rule>
+
+                <!-- przypisy -->
+                <rule break="yes">
+                    <beforebreak>\.(?:\[[0-9]+\])+</beforebreak>
+                    <afterbreak> </afterbreak>
+                </rule>
+
+
+                <rule break="yes">
+                    <beforebreak></beforebreak>
+                    <afterbreak>\n</afterbreak>
+                </rule>
+
+            </languagerule>
+
         </languagerules>
 
         <maprules>
@@ -471,6 +522,7 @@
                 <languagemap languagepattern="(?:RU|ru|Russian|RUSSIAN).*" languagerulename="ru"/>
                 <languagemap languagepattern="(?:AR|ar|Arabic|ARABIC).*" languagerulename="ar"/>
                 <languagemap languagepattern="(?:ZH|zh|Chinese|CHINESE).*" languagerulename="zh"/>
+                <languagemap languagepattern="(?:HR|hr|Croatian|CROATIAN).*" languagerulename="hr"/>
             </maprule>
         </maprules>
 
