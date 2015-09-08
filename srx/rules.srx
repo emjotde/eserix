@@ -487,10 +487,34 @@
 
                 <!-- ABBREVS -->
                 <rule break="no">
-                    <beforebreak>\b(?:br|uč|str|tzv|i\s+sl|tj|ž\.\s*r|v\.\s*d|o\.\s*g|npr|jd|br|č|g|l|o|r|bl|fr|mn|pl|st|sv|ak|čak|čit|dat|dem|dipl|gen|imp|god|gosp|hrv|instr|komp|kajk|kat|lok|mons|nom|os|pov|prof|razr|slov|tok|tal|usp|dr|mr|rn|akad|msgr|plf|rkt|rkp|stsl|vlč|d\.\s*d|d\.\s*o\.\s*o|j\.\s*t\.\s*d|n\.\s*r|p\.\s*n|v\.\s*r|a\.\s*a|p\.\s*c|s\.\s*a|d\.\s*z|i\s+dr|u\s+z|po\.\s+Kr|pr\.\s+Kr|zk\.\s+ul|kbr|itd|itsl)\.</beforebreak>
+                    <beforebreak>\b(?:br|uč|str|tzv|i\s+sl|tj|ž\.\s*r|v\.\s*d|o\.\s*g|npr|jd|br|č|g|l|o|r|bl|fr|mn|pl|st|sv|ak|čak|čit|dat|dem|dipl|gen|imp|god|gosp|hrv|instr|komp|kajk|kat|lok|mons|nom|os|pov|prof|razr|slov|tok|tal|usp|dr|mr|rn|akad|msgr|plf|rkt|rkp|stsl|vlč|d\.\s*d|d\.\s*o\.\s*o|j\.\s*t\.\s*d|n\.\s*r|p\.\s*n|v\.\s*r|a\.\s*a|p\.\s*c|s\.\s*a|d\.\s*z|i\s+dr|u\s+z|po\.\s+Kr|pr\.\s+Kr|zk\.\s+ul|kbr|itd|itsl|[tT]j|[nN]pr|[pP]rim|vol|Vol|no|No|tel|Tel|comp|ekon|farm|fil|fiz|fra|gđa|gđica|gdin|geod|geogr|geol|brig|temp|trans|ing|inž|univ|spec|sveuč|struč|stand|substit|perf|prep|prez|pret|part|nom|gen|dat|aku|vok|lok|instrum|ablat|juž|sjev|ist|zap|grč|hebr|rim|zagr|obj|lat|franc|jap|kem|dipl|med|filo|rođ|dir|engl|min|maks|eng|doc|energ|amer|sing|pl|fem|masc|neut|hrv|njem|ca|cca|slov|tal|Gosp|Br|Str|Sij|Velj|Ožu|Trav|Svi|Lip|Srp|Kol|Ruj|List|Stud|Pros|PhD|Prof|gosp|građ|inform|kem|kinol|kršć|lik|lingv|log|mat|meteorol|ml|pov|prom|psih|reg|sc|sociol|tehnol|tehn|stom|teol|umj|ur|usp|vet|vlč|zool)\.</beforebreak>
                     <afterbreak>\s</afterbreak>
                 </rule>
-                
+
+                <!-- Don't split [.?!] when they're quoted -->
+                <rule break="no">
+                    <beforebreak>['"][\.!?…]['"]\s</beforebreak>
+                    <afterbreak></afterbreak>
+                </rule>
+
+                <!-- Numbers, dates e.g. "3.10. odnijeli smo" -->
+                <rule break="no">
+                    <beforebreak>\b\d+\.\s</beforebreak>
+                    <afterbreak>\p{Ll}|\p{Lu}{2,}</afterbreak>
+                </rule>
+
+                <!-- don't split at cases like "Karlo IV. odnio je pobjedu..." -->
+                <rule break="no">
+                    <beforebreak>[\s&#160;][IVX]+\.\s</beforebreak>
+                    <afterbreak>[^\p{Lu}]+</afterbreak>
+                </rule>
+
+                <!-- don't split at cases like "u 13. ili 14. stoljeću" -->
+                <rule break="no">
+                    <beforebreak>\d+\.\s</beforebreak>
+                    <afterbreak>(i|ili|do)\s</afterbreak>
+                </rule>
+                    
                 <rule break="yes">
                     <beforebreak>[\.\?!]+(["'])?</beforebreak>
                     <afterbreak>\s+([\-"']+\s*)?\p{Lu}</afterbreak>
@@ -501,7 +525,6 @@
                     <beforebreak>\.(?:\[[0-9]+\])+</beforebreak>
                     <afterbreak> </afterbreak>
                 </rule>
-
 
                 <rule break="yes">
                     <beforebreak></beforebreak>
