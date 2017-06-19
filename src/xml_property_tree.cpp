@@ -22,6 +22,6 @@ void XmlPropertyTree::write(std::ostream& outputStream) {
     boost::property_tree::write_xml(
         outputStream,
         (boost::property_tree::ptree&)*this,
-        boost::property_tree::xml_parser::xml_writer_settings<char>(' ', 2)
+        boost::property_tree::xml_parser::xml_writer_settings<std::string>(' ', 2)
         );
 }
