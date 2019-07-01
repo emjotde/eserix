@@ -79,7 +79,7 @@ class PCREWrapper : private pcrecpp::RE {
             return ((pcrecpp::RE)(*this)).NumberOfCapturingGroups();
         }
 
-        const string& error() const {
+        const std::string& error() const {
             return ((pcrecpp::RE)(*this)).error();
         }
 
@@ -87,7 +87,7 @@ class PCREWrapper : private pcrecpp::RE {
             return ((pcrecpp::RE)(*this)).error().empty();
         }
 
-        const string& pattern() const {
+        const std::string& pattern() const {
             return ((const pcrecpp::RE&)(*this)).pattern();
         }
 
