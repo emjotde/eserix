@@ -258,7 +258,6 @@
                     <afterbreak> </afterbreak>
                 </rule>
 
-
                 <rule break="yes">
                     <beforebreak></beforebreak>
                     <afterbreak>\n</afterbreak>
@@ -351,6 +350,12 @@
                     <afterbreak>\s</afterbreak>
                 </rule>
 
+                <!-- Dates -->
+                <rule break="no">
+                    <beforebreak>[0-9]+\.</beforebreak>
+                    <afterbreak>\s+(Januar|Februar|März|April|Maj|Juni|Juli|August|September|Oktober|November|Dezember)</afterbreak>
+                </rule>
+
                 <rule break="no">
                     <beforebreak>^\s*\p{Ll}\.</beforebreak>
                     <afterbreak>\s</afterbreak>
@@ -404,6 +409,12 @@
                     <beforebreak>[\.\?!]+</beforebreak>
                     <afterbreak>\s+\p{Lu}</afterbreak>
                 </rule>
+
+                <rule break="yes">
+                    <beforebreak>[\.\?!]+(["'])?</beforebreak>
+                    <afterbreak>\s+([\-"']+\s*)?\p{Lu}</afterbreak>
+                </rule>
+
 
                 <rule break="yes">
                     <beforebreak></beforebreak>
@@ -515,6 +526,11 @@
                     <afterbreak>(i|ili|do)\s</afterbreak>
                 </rule>
                     
+                <rule break="yes">
+                    <beforebreak>[\.\?!]+(["'])?</beforebreak>
+                    <afterbreak>\s+([\-"']+\s*)?\p{Lu}</afterbreak>
+                </rule>
+
                 <rule break="yes">
                     <beforebreak>[\.\?!]+(["'])?</beforebreak>
                     <afterbreak>\s+([\-"']+\s*)?\p{Lu}</afterbreak>
